@@ -7,5 +7,5 @@
 
 ## 2 czesci zaliczenia:
 
--   czesc swiftowa
--   czesc programowania na iOS
+1.   czesc swiftowa
+1.   czesc programowania na iOS
