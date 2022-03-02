@@ -7,14 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0714EAA327C6789200273FD1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0714EAA227C6789200273FD1 /* main.swift */; };
-		0714EAAA27C678A900273FD1 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0714EAA927C678A900273FD1 /* Board.swift */; };
-		CDADE0532AF1BBE08A64EC97 /* Ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADE2976187D524ADDDA551 /* Ship.swift */; };
-		CDADE47884A41517E4DB906A /* CellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADE63F165043A9059D1931 /* CellType.swift */; };
+		07CF89EB27CFA6D800F0F936 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CF89EA27CFA6D800F0F936 /* main.swift */; };
+		07CF89F227CFA73900F0F936 /* AcceptionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CF89F127CFA73900F0F936 /* AcceptionType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		0714EA9D27C6789200273FD1 /* CopyFiles */ = {
+		07CF89E527CFA6D800F0F936 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -26,15 +24,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0714EA9F27C6789200273FD1 /* BattleshipGameEngine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BattleshipGameEngine; sourceTree = BUILT_PRODUCTS_DIR; };
-		0714EAA227C6789200273FD1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		0714EAA927C678A900273FD1 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
-		CDADE2976187D524ADDDA551 /* Ship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ship.swift; sourceTree = "<group>"; };
-		CDADE63F165043A9059D1931 /* CellType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellType.swift; sourceTree = "<group>"; };
+		07CF89E727CFA6D800F0F936 /* TestingSwift */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestingSwift; sourceTree = BUILT_PRODUCTS_DIR; };
+		07CF89EA27CFA6D800F0F936 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		07CF89F127CFA73900F0F936 /* AcceptionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptionType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0714EA9C27C6789200273FD1 /* Frameworks */ = {
+		07CF89E427CFA6D800F0F936 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -44,69 +40,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0714EA9627C6789200273FD1 = {
+		07CF89DE27CFA6D800F0F936 = {
 			isa = PBXGroup;
 			children = (
-				0714EAA127C6789200273FD1 /* BattleshipGameEngine */,
-				0714EAA027C6789200273FD1 /* Products */,
+				07CF89E927CFA6D800F0F936 /* TestingSwift */,
+				07CF89E827CFA6D800F0F936 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		0714EAA027C6789200273FD1 /* Products */ = {
+		07CF89E827CFA6D800F0F936 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0714EA9F27C6789200273FD1 /* BattleshipGameEngine */,
+				07CF89E727CFA6D800F0F936 /* TestingSwift */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0714EAA127C6789200273FD1 /* BattleshipGameEngine */ = {
+		07CF89E927CFA6D800F0F936 /* TestingSwift */ = {
 			isa = PBXGroup;
 			children = (
-				0714EAA227C6789200273FD1 /* main.swift */,
-				0714EAA927C678A900273FD1 /* Board.swift */,
-				CDADE63F165043A9059D1931 /* CellType.swift */,
-				CDADE2976187D524ADDDA551 /* Ship.swift */,
+				07CF89EA27CFA6D800F0F936 /* main.swift */,
+				07CF89F127CFA73900F0F936 /* AcceptionType.swift */,
 			);
-			path = BattleshipGameEngine;
+			path = TestingSwift;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0714EA9E27C6789200273FD1 /* BattleshipGameEngine */ = {
+		07CF89E627CFA6D800F0F936 /* TestingSwift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0714EAA627C6789200273FD1 /* Build configuration list for PBXNativeTarget "BattleshipGameEngine" */;
+			buildConfigurationList = 07CF89EE27CFA6D800F0F936 /* Build configuration list for PBXNativeTarget "TestingSwift" */;
 			buildPhases = (
-				0714EA9B27C6789200273FD1 /* Sources */,
-				0714EA9C27C6789200273FD1 /* Frameworks */,
-				0714EA9D27C6789200273FD1 /* CopyFiles */,
+				07CF89E327CFA6D800F0F936 /* Sources */,
+				07CF89E427CFA6D800F0F936 /* Frameworks */,
+				07CF89E527CFA6D800F0F936 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = BattleshipGameEngine;
-			productName = BattleshipGameEngine;
-			productReference = 0714EA9F27C6789200273FD1 /* BattleshipGameEngine */;
+			name = TestingSwift;
+			productName = TestingSwift;
+			productReference = 07CF89E727CFA6D800F0F936 /* TestingSwift */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		0714EA9727C6789200273FD1 /* Project object */ = {
+		07CF89DF27CFA6D800F0F936 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
-					0714EA9E27C6789200273FD1 = {
+					07CF89E627CFA6D800F0F936 = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
 				};
 			};
-			buildConfigurationList = 0714EA9A27C6789200273FD1 /* Build configuration list for PBXProject "BattleshipGameEngine" */;
+			buildConfigurationList = 07CF89E227CFA6D800F0F936 /* Build configuration list for PBXProject "TestingSwift" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -114,32 +108,30 @@
 				en,
 				Base,
 			);
-			mainGroup = 0714EA9627C6789200273FD1;
-			productRefGroup = 0714EAA027C6789200273FD1 /* Products */;
+			mainGroup = 07CF89DE27CFA6D800F0F936;
+			productRefGroup = 07CF89E827CFA6D800F0F936 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0714EA9E27C6789200273FD1 /* BattleshipGameEngine */,
+				07CF89E627CFA6D800F0F936 /* TestingSwift */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0714EA9B27C6789200273FD1 /* Sources */ = {
+		07CF89E327CFA6D800F0F936 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0714EAAA27C678A900273FD1 /* Board.swift in Sources */,
-				0714EAA327C6789200273FD1 /* main.swift in Sources */,
-				CDADE47884A41517E4DB906A /* CellType.swift in Sources */,
-				CDADE0532AF1BBE08A64EC97 /* Ship.swift in Sources */,
+				07CF89F227CFA73900F0F936 /* AcceptionType.swift in Sources */,
+				07CF89EB27CFA6D800F0F936 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		0714EAA427C6789200273FD1 /* Debug */ = {
+		07CF89EC27CFA6D800F0F936 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -200,7 +192,7 @@
 			};
 			name = Debug;
 		};
-		0714EAA527C6789200273FD1 /* Release */ = {
+		07CF89ED27CFA6D800F0F936 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -254,20 +246,18 @@
 			};
 			name = Release;
 		};
-		0714EAA727C6789200273FD1 /* Debug */ = {
+		07CF89EF27CFA6D800F0F936 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		0714EAA827C6789200273FD1 /* Release */ = {
+		07CF89F027CFA6D800F0F936 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -277,25 +267,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0714EA9A27C6789200273FD1 /* Build configuration list for PBXProject "BattleshipGameEngine" */ = {
+		07CF89E227CFA6D800F0F936 /* Build configuration list for PBXProject "TestingSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0714EAA427C6789200273FD1 /* Debug */,
-				0714EAA527C6789200273FD1 /* Release */,
+				07CF89EC27CFA6D800F0F936 /* Debug */,
+				07CF89ED27CFA6D800F0F936 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0714EAA627C6789200273FD1 /* Build configuration list for PBXNativeTarget "BattleshipGameEngine" */ = {
+		07CF89EE27CFA6D800F0F936 /* Build configuration list for PBXNativeTarget "TestingSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0714EAA727C6789200273FD1 /* Debug */,
-				0714EAA827C6789200273FD1 /* Release */,
+				07CF89EF27CFA6D800F0F936 /* Debug */,
+				07CF89F027CFA6D800F0F936 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 0714EA9727C6789200273FD1 /* Project object */;
+	rootObject = 07CF89DF27CFA6D800F0F936 /* Project object */;
 }
