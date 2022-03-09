@@ -8,27 +8,26 @@
 import Foundation
 
 func getCSVData() -> [[String]] {
-    var lines: [[String]] = [[]]
-
     let file = "csv_file.csv"
-    if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-        let fileURL = dir.appendingPathComponent(file)
+    // change path accordingly
+    let fileURL = URL(fileURLWithPath: "/Users/molybdenum/Studia/3.2.-Programowanie-iOS/Zajecia3/Zajecia3/" + file)
+    
+    var lines: [[String]] = [[]]
         do {
             let data = try String(contentsOf: fileURL, encoding: .utf8)
             let myStrings = data.split(separator: "\n")
-            var substringLine: [Substring] = []
-            var line: [String] = []
             for myString in myStrings {
+                var line: [String] = []
+                var substringLine: [Substring] = []
                 substringLine = myString.split(separator: ",")
+                for substring in substringLine {
+                    line.append(String(substring))
+                }
+                lines.append(line)
             }
-            for substring in substringLine {
-                line.append(String(substring))
-            }
-            lines.append(line)
         } catch {
             print(error)
         }
-    }
     return lines.filter({elem in return elem != []})
 }
 
