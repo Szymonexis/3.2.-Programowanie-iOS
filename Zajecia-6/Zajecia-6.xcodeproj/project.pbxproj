@@ -12,6 +12,7 @@
 		072A403E27F4892C00F07355 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072A403D27F4892C00F07355 /* Group.swift */; };
 		072A404027F489E700F07355 /* FieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072A403F27F489E700F07355 /* FieldType.swift */; };
 		072A404227F4916000F07355 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072A404127F4916000F07355 /* Item.swift */; };
+		077669F427F635120007AC51 /* MyErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077669F327F635120007AC51 /* MyErrors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +34,7 @@
 		072A403D27F4892C00F07355 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		072A403F27F489E700F07355 /* FieldType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldType.swift; sourceTree = "<group>"; };
 		072A404127F4916000F07355 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		077669F327F635120007AC51 /* MyErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyErrors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				072A403D27F4892C00F07355 /* Group.swift */,
 				072A403F27F489E700F07355 /* FieldType.swift */,
 				072A404127F4916000F07355 /* Item.swift */,
+				077669F327F635120007AC51 /* MyErrors.swift */,
 			);
 			path = "Zajecia-6";
 			sourceTree = "<group>";
@@ -132,6 +135,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				077669F427F635120007AC51 /* MyErrors.swift in Sources */,
 				072A404227F4916000F07355 /* Item.swift in Sources */,
 				072A404027F489E700F07355 /* FieldType.swift in Sources */,
 				072A403E27F4892C00F07355 /* Group.swift in Sources */,

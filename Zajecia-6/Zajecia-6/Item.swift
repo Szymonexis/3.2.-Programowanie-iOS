@@ -9,6 +9,7 @@ import Foundation
 
 class Item {
     let fields: [Field]
+    var values: [String] = []
     
     init(fieldTypes: [FieldType]) {
         var fields: [Field] = []
@@ -34,5 +35,28 @@ class Item {
         }
         
         self.fields = fields
+    }
+    
+    func setValues(values: [String]) throws {
+        if (values.count == fields.count) {
+            self.values = values
+            try? insertValues()
+        } else {
+            throw MyErrors.IncorrectValuesError
+        }
+    }
+    
+    private func insertValues() throws {
+        for (field, value) in zip(fields, values) {
+            try? field.setValue(value: value)
+        }
+    }
+    
+    func toString() -> String {
+        var returnString: String = ""
+        for (field, value) in zip(fields, values) {
+            returnString += field.toString() + "\t" + value + "\n"
+        }
+        return returnString
     }
 }

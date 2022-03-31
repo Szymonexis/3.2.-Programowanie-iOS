@@ -15,7 +15,7 @@ class Field {
         self.name = name
     }
     
-    func setValue(value: Any) {
+    func setValue(value: Any) throws {
         if parseValue(val: value) {
             self.value = value
         } else {
@@ -26,6 +26,10 @@ class Field {
     func parseValue(val: Any) -> Bool {
         return true
     }
+    
+    func toString() -> String {
+        return name
+    }
 }
 
 class TextField: Field {
@@ -33,7 +37,7 @@ class TextField: Field {
         super.init(name: name)
     }
     
-    func setValue(value: String) {
+    func setValue(value: String) throws {
         if parseValue(val: value) {
             self.value = value as String
         } else {
@@ -49,11 +53,11 @@ class EmailField: TextField {
         super.init(name: name)
     }
     
-    override func setValue(value: String) {
+    override func setValue(value: String) throws {
         if parseValue(val: value) {
             self.value = value as String
         } else {
-            self.value = nil
+            throw MyErrors.InvalidInputError
         }
     }
     
@@ -73,11 +77,11 @@ class NumberField: Field {
         super.init(name: name)
     }
     
-    func setValue(value: String) {
+    func setValue(value: String) throws {
         if parseValue(val: value) {
             self.value = value as String
         } else {
-            self.value = nil
+            throw MyErrors.InvalidInputError
         }
     }
     
@@ -97,11 +101,11 @@ class CVCField: Field {
         super.init(name: name)
     }
     
-    func setValue(value: String) {
+    func setValue(value: String) throws {
         if parseValue(val: value) {
             self.value = value as String
         } else {
-            self.value = nil
+            throw MyErrors.InvalidInputError
         }
     }
     
@@ -122,11 +126,11 @@ class CreditCardNumberField: Field {
         super.init(name: name)
     }
     
-    func setValue(value: String) {
+    func setValue(value: String) throws {
         if parseValue(val: value) {
             self.value = value as String
         } else {
-            self.value = nil
+            throw MyErrors.InvalidInputError
         }
     }
     

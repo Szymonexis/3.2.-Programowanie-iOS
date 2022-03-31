@@ -18,8 +18,19 @@ class Group {
         self.items = []
     }
     
-    func newItem() {
-        // TODO: finnish this bitch :3
+    func newItem(values: [String]) {
+        let item: Item = Item(fieldTypes: fieldTypes)
+        try? item.setValues(values: values)
     }
         
+    func toString() -> String {
+        var returnString: String = ""
+        var counter: Int = 0
+        for item in items {
+            returnString += String(counter) + "\n"
+            returnString += item.toString() + "\n"
+            counter += 1
+        }
+        return returnString
+    }
 }
