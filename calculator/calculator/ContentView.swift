@@ -71,8 +71,8 @@ struct ContentView: View {
             
             VStack {
                 // Text display
-                ScrollViewReader { reader in
-                    ScrollView(.horizontal) {
+                ScrollView(.horizontal) {
+                    ScrollViewReader { reader in
                         HStack {
                             Text(expression)
                                 .bold()
@@ -80,19 +80,19 @@ struct ContentView: View {
                                 .foregroundColor(.white)
                                 .padding()
                                 .id("expression")
-                                .onChange(of: expression) { newValue in
-                                    withAnimation {
-                                        reader.scrollTo("expression", anchor: .trailing)
-                                    }
-                                }
+                                
+                        }.onChange(of: expression) { newValue in
+                            withAnimation {
+                                reader.scrollTo("expression", anchor: .trailing)
+                            }
                         }
                     }
                 }
                 
                 Spacer()
                 
-                ScrollViewReader { reader in
-                    ScrollView(.horizontal) {
+                ScrollView(.horizontal) {
+                    ScrollViewReader { reader in
                         HStack {
                             Text(result)
                                 .bold()
