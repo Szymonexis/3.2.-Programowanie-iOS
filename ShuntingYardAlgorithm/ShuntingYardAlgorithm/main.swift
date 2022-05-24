@@ -7,107 +7,41 @@
 
 import Foundation
 
-var precedenceDict: [String:Int] = [
-    "(": 5,
-    ")": 5,
-    "^": 4,
-    "*": 3,
-    "/": 3,
-    "-": 2,
-    "+": 2
-]
-
-var operatorEnumDict: [String:OperatorEnum] = [
-    "^": OperatorEnum.power,
-    "*": OperatorEnum.multiply,
-    "/": OperatorEnum.divide,
-    "-": OperatorEnum.substract,
-    "+": OperatorEnum.add
-]
-
-protocol ExpressionElement {
-    func get() -> String
-    func set(value: String) -> Void
-}
-
-class Number: ExpressionElement, CustomStringConvertible {
-    var val: Float
-    
-    init(value: String) {
-        val = Float(value)!
-    }
-    
-    func get() -> String {
-        return String(val)
-    }
-    
-    func set(value: String) -> Void {
-        val = Float(value)!
-    }
-    
-    public var description: String { return "\(val)" }
-}
-
-class Operator: ExpressionElement, CustomStringConvertible {
-    var val: String
-    
-    init(value: String) {
-        val = value
-    }
-    
-    func get() -> String {
-        return val
-    }
-    
-    func set(value: String) -> Void {
-        val = value
-    }
-    
-    func getPrecedence() -> Int {
-        if (val != "(" && val != ")") {
-            return precedenceDict[val]!
-        }
-        return 0
-    }
-    
-    public var description: String { return "\(val)" }
-}
-
-enum OperatorEnum: String {
-    case power = "^"
-    case multiply = "*"
-    case divide = "/"
-    case add = "+"
-    case substract = "-"
-    case leftBrace = "("
-    case rightBrace = ")"
-}
-
 class ShuntingYardAlgo {
-    var output: [ExpressionElement] = []
-    var opStack: [Operator] = []
-    var valuesStack: [Number] = []
-    var values: [ExpressionElement] = []
-    var isRpn: Bool = false
-    let operators: [String] = ["^", "*", "/", "-", "+", "(", ")"]
+    private var values: [ExpressionElement] = []
+    private var isRpn: Bool = false
+    private var output: [ExpressionElement] = []
+    private var opStack: [Operator] = []
+    private var valuesStack: [Number] = []
 
     init(expression: String) {
-        let substrings = expression.split(separator: " ")
-        for sequence in substrings {
-            if (operators.contains(String(sequence))) {
-                values.append(Operator(value: String(sequence)))
-            } else {
-                values.append(Number(value: String(sequence)))
-            }
-        }
+        self.generateValuesArray(expression: expression)
     }
     
-    func printCurrentState(printOutput: Bool? = true,
-                           printOpStack: Bool? = true,
-                           printValues: Bool? = true,
-                           printValuesStack: Bool? = false,
-                           value: String? = nil,
-                           text: String? = nil) -> Void {
+    public func setNewExpression(expression: String) {
+        clearAll()
+        generateValuesArray(expression: expression)
+    }
+    
+    // returns the value of expression or -0.0 if an error occured
+    public func solve(
+        showRpn: Bool? = false,
+        showIsRpn: Bool? = false
+    ) -> Float {
+        shunt()
+        showIsRpn != nil && showIsRpn! ? print("isRpn: \(isRpn)") : nil
+        showRpn != nil && showRpn! && isRpn ? print("RPN stream: \(output)") : nil
+        return solveRpn()
+    }
+    
+    public func printCurrentState(
+        printOutput: Bool? = true,
+        printOpStack: Bool? = true,
+        printValues: Bool? = true,
+        printValuesStack: Bool? = false,
+        value: String? = nil,
+        text: String? = nil
+    ) -> Void {
         if (printOutput != nil && printOutput!) {
             print("output: \(output)")
         }
@@ -128,9 +62,27 @@ class ShuntingYardAlgo {
         }
     }
     
-    func shunt() -> Void {
+    private func clearAll() -> Void {
+        values = []
+        isRpn = false
+        output = []
+        opStack = []
+        valuesStack = []
+    }
+    
+    private func generateValuesArray(expression: String) -> Void {
+        let substrings = expression.split(separator: " ")
+        for sequence in substrings {
+            if (operators.contains(String(sequence))) {
+                values.append(Operator(value: String(sequence)))
+            } else {
+                values.append(Number(value: String(sequence)))
+            }
+        }
+    }
+    
+    private func shunt() -> Void {
         for value in values {
-            print("\n")
             if (value is Number) {
                 output.append(value)
             } else {
@@ -165,10 +117,23 @@ class ShuntingYardAlgo {
             output.append(op)
         }
         
-        isRpn = true;
+        checkForErrors()
     }
     
-    func solveRpn() -> Float {
+    private func checkForErrors() -> Void {
+        var numberCount = 0
+        var operatorCount = 0
+        
+        for value in output {
+            operatorCount = value is Operator ? operatorCount + 1 : operatorCount
+            numberCount = value is Number ? numberCount + 1 : numberCount
+        }
+        
+        isRpn = numberCount == operatorCount + 1;
+    }
+    
+    // returns the value of expression or -0.0 if an error occured
+    private func solveRpn() -> Float {
         if (isRpn) {
             for value in output {
                 if (value is Number) {
@@ -191,6 +156,9 @@ class ShuntingYardAlgo {
                         result = leftValueFloat * rightValueFloat
                         break
                     case .divide:
+                        if (rightValueFloat == 0) {
+                            return -0.0
+                        }
                         result = leftValueFloat / rightValueFloat
                         break
                     case .add:
@@ -210,15 +178,17 @@ class ShuntingYardAlgo {
             }
             return Float(valuesStack.popLast()!.get())!
         }
-        return 0;
+        return -0.0;
     }
 }
 
 // shunting yard algorithm example
-var shuntingYardAlgo = ShuntingYardAlgo(expression: "2 + 3 * 4 - 5 + 7 * 6 / 3 - 2 * 3 ^ 2 + ( 5 - 2 ) * 2")
+var shuntingYardAlgo = ShuntingYardAlgo(
+    expression: "2 + 3 * 4 - 5 + 7 * 6 / 3 - 2 * 3 ^ 2 + ( 5 - 2 ) * 2"
+)
 
-shuntingYardAlgo.printCurrentState()
-shuntingYardAlgo.shunt()
-shuntingYardAlgo.printCurrentState()
-print(shuntingYardAlgo.solveRpn())
-shuntingYardAlgo.printCurrentState(printValuesStack: true)
+print("2 + 3 * 4 - 5 + 7 * 6 / 3 - 2 * 3 ^ 2 + ( 5 - 2 ) * 2 =" +
+      "\(shuntingYardAlgo.solve(showRpn: true, showIsRpn: true))")
+
+shuntingYardAlgo.setNewExpression(expression: "2 - 7 * ( 4 - 2 )")
+print("2 - 7 * ( 4 - 2 ) = \(shuntingYardAlgo.solve())")
