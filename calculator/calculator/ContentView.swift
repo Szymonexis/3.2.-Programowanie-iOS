@@ -53,7 +53,7 @@ enum CalculatorButton: String {
 
 struct ContentView: View {
     @State var expression: String = "0"
-    @State var result: String = ""
+    @State var result: String = " "
 
     let numbersStrings = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     
@@ -70,48 +70,47 @@ struct ContentView: View {
             Color.black.ignoresSafeArea()
             
             VStack {
-                // Text display
-                ScrollView(.horizontal) {
-                    ScrollViewReader { reader in
-                        HStack {
-                            Text(expression)
-                                .bold()
-                                .font(.system(size: 100))
-                                .foregroundColor(.white)
-                                .padding()
-                                .id("expression")
-                                
-                        }.onChange(of: expression) { newValue in
-                            withAnimation {
-                                reader.scrollTo("expression", anchor: .trailing)
+                VStack {
+                    // Text display
+                    ScrollView(.horizontal) {
+                        ScrollViewReader { reader in
+                            HStack {
+                                Text(expression)
+                                    .bold()
+                                    .font(.system(size: self.buttonHeight()))
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .id("expression")
+                                    
+                            }.onChange(of: expression) { newValue in
+                                withAnimation {
+                                    reader.scrollTo("expression", anchor: .trailing)
+                                }
+                            }
+                        }
+                    }
+                    
+                    Spacer()
+                    
+                    ScrollView(.horizontal) {
+                        ScrollViewReader { reader in
+                            HStack {
+                                Text(result)
+                                    .bold()
+                                    .font(.system(size: self.buttonHeight()))
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .id("result")
+                            }.onChange(of: result) { newValue in
+                                withAnimation {
+                                    reader.scrollTo("result", anchor: .trailing)
+                                }
                             }
                         }
                     }
                 }
-                
-                Spacer()
-                
-                ScrollView(.horizontal) {
-                    ScrollViewReader { reader in
-                        HStack {
-                            Text(result)
-                                .bold()
-                                .font(.system(size: 100))
-                                .foregroundColor(.white)
-                                .padding()
-                                .id("result")
-                        }.onChange(of: result) { newValue in
-                            withAnimation {
-                                reader.scrollTo("result", anchor: .trailing)
-                            }
-                        }
-                    }
-                }
-                
-                Spacer()
                 
                 // Buttons
-                
                 ForEach(buttons, id: \.self) { row in
                     HStack(spacing: 10) {
                         ForEach(row, id: \.self) { item in
@@ -175,7 +174,7 @@ struct ContentView: View {
     
     func onButtonPress(button: CalculatorButton) {
         let potentialNumbers: [String] = expression.components(
-            separatedBy: CharacterSet(charactersIn: "()/x-*+")
+            separatedBy: CharacterSet(charactersIn: "()/x-*+ ")
         )
         var numbers: [Float] = []
         for potentialNumber in potentialNumbers {
@@ -183,15 +182,18 @@ struct ContentView: View {
                 do {
                     try numbers.append(self.unwrapFloat(potentialNumber: potentialNumber))
                 } catch {
-                    // TODO: Create error handling (display snackBar with error info)
                     expression = "0"
+                    result = "error"
                 }
             }
         }
         
         switch button {
         case .equals:
-            // TODO: Implement Djikstra's Shunting Yard algorithm
+            let shuntingYardAlgo = ShuntingYardAlgo(expression: expression)
+            shuntingYardAlgo.shunt()
+            let resultFloat = shuntingYardAlgo.solveRpn()
+            result = resultFloat != -0.0 ? String(resultFloat) : "error"
             break
         case .clear:
             expression = "0"
@@ -200,6 +202,11 @@ struct ContentView: View {
             if (numbersStrings.contains(String(expression.last!)) &&
                 isInt(number: numbers[numbers.endIndex - 1])) {
                 expression = "\(expression)\(button.rawValue)"
+            }
+            break
+        case .multiply, .divide, .substract, .add, .rightBrace, .leftBrace:
+            if (expression != "0") {
+                expression = "\(expression) \(button.rawValue) "
             }
             break
         default:

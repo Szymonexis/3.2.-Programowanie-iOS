@@ -222,5 +222,3 @@ shuntingYardAlgo.shunt()
 shuntingYardAlgo.printCurrentState()
 print(shuntingYardAlgo.solveRpn())
 shuntingYardAlgo.printCurrentState(printValuesStack: true)
-
-
