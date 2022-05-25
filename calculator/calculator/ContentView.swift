@@ -194,6 +194,7 @@ struct ContentView: View {
             shuntingYardAlgo.shunt()
             let resultFloat = shuntingYardAlgo.solveRpn()
             result = resultFloat != -0.0 ? String(resultFloat) : "error"
+            expression = "0"
             break
         case .clear:
             expression = "0"
